@@ -8,4 +8,13 @@ class Book
   def information
     @information
   end
+
+  def add_due_date(date)
+    @due_date = date
+  end
+
+  def due_date
+    @due_date
+  end
+
 end
