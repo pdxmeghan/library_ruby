@@ -20,3 +20,15 @@ describe 'Book' do
   end
 end
 
+describe 'Patron' do
+  it 'is initialized with a name' do
+    test_patron = Patron.new("Jane Doe")
+    expect(test_patron).to be_an_instance_of Patron
+  end
+
+  it 'reads out the name of a patron' do
+    test_patron = Patron.new("Jane Doe")
+    expect(test_patron.name).to eq("Jane Doe")
+  end
+end
+
