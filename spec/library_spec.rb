@@ -21,6 +21,28 @@ describe 'Book' do
 end
 
 describe 'Patron' do
+  describe '.clear' do
+    it 'empties out all saved Patrons' do
+      Patron.new("Jane Doe").save
+      Patron.clear
+      expect(Patron.all).to eq []
+    end
+  end
+
+  describe '.all' do
+    it 'is empty at first' do
+      expect(Patron.all).to eq []
+    end
+  end
+
+  describe 'save' do
+    it 'adds a patron to the list of all patrons' do
+      test_patron = Patron.new("Jane Doe")
+      test_patron.save
+      expect(Patron.all).to eq [test_patron]
+    end
+  end
+
   it 'is initialized with a name' do
     test_patron = Patron.new("Jane Doe")
     expect(test_patron).to be_an_instance_of Patron
@@ -29,6 +51,11 @@ describe 'Patron' do
   it 'reads out the name of a patron' do
     test_patron = Patron.new("Jane Doe")
     expect(test_patron.name).to eq("Jane Doe")
+  end
+
+  it 'starts out with an empty array of books' do
+    test_patron = Patron.new("Jane Doe")
+    expect(test_patron.books).to eq []
   end
 end
 
