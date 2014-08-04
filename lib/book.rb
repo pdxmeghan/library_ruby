@@ -3,6 +3,9 @@ class Book
     @name = name
     @author = author
     @information = @name + " by " + @author
+    timenow = Time.new
+    futuretime = timenow + 1814400
+    @due_date = futuretime.strftime("%A, %B %d, %Y")
   end
 
   def information
@@ -15,10 +18,6 @@ class Book
 
   def author
     @author
-  end
-
-  def add_due_date(date)
-    @due_date = date
   end
 
   def due_date

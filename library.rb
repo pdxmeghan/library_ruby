@@ -85,12 +85,11 @@ def check_out_book
   puts "\n"
   new_book = Book.new(title_input, author_input)
   @selected_patron.add_book(new_book)
-  # binding.pry
-  puts "You checked out #{new_book.information}"
+  puts "You checked out #{new_book.information}, Due on: #{new_book.due_date}"
   puts "\n"
   puts "#{@selected_patron.name} has these books checked out:"
   @selected_patron.books.each do |book|
-    puts book.information
+    puts book.information + ", Due on: #{book.due_date}"
   end
   puts "\n"
   book_menu
@@ -116,7 +115,7 @@ end
 def list_books
   puts "#{@selected_patron.name} has these books checked out:"
   @selected_patron.books.each do |book|
-    puts book.information
+    puts book.information + ", Due on #{book.due_date}"
   end
   puts"\n"
   book_menu
