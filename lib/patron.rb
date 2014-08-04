@@ -8,6 +8,7 @@ class Patron
   def initialize(name)
     @name = name
     @books = []
+    @returned_books = []
   end
 
   def Patron.all
@@ -28,5 +29,13 @@ class Patron
 
   def books
     @books
+  end
+
+  def return_book(book)
+    @returned_books << book
+  end
+
+  def returned_books
+    @returned_books
   end
 end

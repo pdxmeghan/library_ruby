@@ -99,18 +99,36 @@ end
 def return_book
   puts "What is the name of the book you're returning?"
   title_input = gets.chomp
-  @selected_patron.books.each do |book|
-    if book.name == title_input
-      puts "Your book has been returned. Thanks!"
-      puts "\n"
-      @selected_patron.books.delete(book)
-      book_menu
-    else
-      puts "Sorry! You have not checked out a book matching that title."
-      puts "\n"
-      book_menu
-    end
+  return_book = @selected_patron.books.detect {|book| book.name == title_input }
+  if return_book
+    puts "Your book has been returned. Thanks!"
+    puts "\n"
+    @selected_patron.books.delete(return_book)
+    @selected_patron.return_book(return_book)
+    book_menu
+  else
+    puts "Sorry! You have not checked out a book matching that title."
+    puts "\n"
+    book_menu
   end
+end
+
+def list_books
+  puts "#{@selected_patron.name} has these books checked out:"
+  @selected_patron.books.each do |book|
+    puts book.information
+  end
+  puts"\n"
+  book_menu
+end
+
+def returned_books
+  puts "#{@selected_patron.name} has returned these books:"
+  @selected_patron.returned_books.each do |book|
+    puts book.information
+  end
+  puts "\n"
+  book_menu
 end
 
 patron_menu
