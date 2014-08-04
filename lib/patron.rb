@@ -10,16 +10,16 @@ class Patron
     @books = []
   end
 
-  def name
-    @name
-  end
-
   def Patron.all
     @@all_patrons
   end
 
   def save
     @@all_patrons << self
+  end
+
+  def name
+    @name
   end
 
   def add_book(book)

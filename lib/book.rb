@@ -9,6 +9,14 @@ class Book
     @information
   end
 
+  def name
+    @name
+  end
+
+  def author
+    @author
+  end
+
   def add_due_date(date)
     @due_date = date
   end
