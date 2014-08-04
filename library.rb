@@ -34,17 +34,18 @@ end
 
 def see_patrons
   puts "Here is a list of all of the patrons."
-  Patron.all.each do |patron|
-    puts patron.name
+  Patron.all.each_with_index do |patron, index|
+    puts "{#{index + 1}} - #{patron.name}"
   end
   puts "\n"
-  puts "Enter the name of a patron to see their account."
-  patron_choice = gets.chomp
-  Patron.all.each do |patron|
-    if patron_choice == patron.name
+  puts "Enter the number of the person whose account you'd like to see."
+  patron_choice = gets.chomp.to_i
+  Patron.all.each_with_index do |patron, index|
+    if patron_choice - 1 == index
       @selected_patron = patron
     end
   end
+  # binding.pry
   puts "\n"
   book_menu
 end
@@ -88,17 +89,20 @@ def check_out_book
   puts "You checked out #{new_book.information}, Due on: #{new_book.due_date}"
   puts "\n"
   puts "#{@selected_patron.name} has these books checked out:"
-  @selected_patron.books.each do |book|
-    puts book.information + ", Due on: #{book.due_date}"
+  @selected_patron.books.each_with_index do |book, index|
+    puts "{#{index + 1}} - #{book.information}, Due on: #{book.due_date}"
   end
   puts "\n"
   book_menu
 end
 
 def return_book
+  @selected_patron.books.each_with_index do |book, index|
+    puts "{#{index + 1}} - #{book.information}, Due on: #{book.due_date}"
+  end
   puts "What is the name of the book you're returning?"
-  title_input = gets.chomp
-  return_book = @selected_patron.books.detect {|book| book.name == title_input }
+  title_input = gets.chomp.to_i
+  return_book = @selected_patron.books[title_input -1]
   if return_book
     puts "Your book has been returned. Thanks!"
     puts "\n"
